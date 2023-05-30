@@ -1,7 +1,7 @@
 # TestApp
 React Native Application Development with Figma Reference
 
-<b>Installation</b>
+### Installation
 1. Clone the repository from GitHub:
 
     git clone https://github.com/wdcs-krunalsatapara/TestApp/tree/master
@@ -48,7 +48,7 @@ Android
 
     npx react-native run-android
 
-# Usage
+### Usage
 
 1. Open the project in your preferred text editor or IDE.
 2. Navigate to the src directory to find the application's source code.
@@ -58,7 +58,7 @@ Android
 6. Interact with the application on the simulator or connected device to test the functionality and user experience.
 7. Continue modifying the code and testing until you are satisfied with the application's behavior.
 
-# Troubleshooting
+### Troubleshooting
 - If you encounter any build or runtime errors, ensure that you have followed the installation steps correctly and that your development environment meets the required dependencies.
 - Refer to the project's README file or documentation for any specific instructions or troubleshooting tips provided by the project maintainers.
 - Search for similar issues or error messages on online forums or developer communities, as someone may have encountered and resolved the same problem before.
