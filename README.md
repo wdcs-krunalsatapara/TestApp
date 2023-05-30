@@ -55,6 +55,9 @@ Android
 3. Run the application following the instructions provided in the "Running the Application" section.
 4. Interact with the application on the simulator or connected device to test the functionality and user experience.
 
+### Notes
+- We are not having enough clarity for the value field calculation in summay section but we have covered logic for PNL and P&L.
+
 ### Troubleshooting
 - If you encounter any build or runtime errors, ensure that you have followed the installation steps correctly and that your development environment meets the required dependencies.
 - Refer to the project's README file or documentation for any specific instructions or troubleshooting tips provided by the project maintainers.
