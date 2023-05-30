@@ -52,11 +52,8 @@ Android
 
 1. Open the project in your preferred text editor or IDE.
 2. Navigate to the src directory to find the application's source code.
-3. Make any necessary modifications or additions to the code to customize the application.
-4. Use the provided components, functions, and styles to build your desired features.
-5. Run the application following the instructions provided in the "Running the Application" section.
-6. Interact with the application on the simulator or connected device to test the functionality and user experience.
-7. Continue modifying the code and testing until you are satisfied with the application's behavior.
+3. Run the application following the instructions provided in the "Running the Application" section.
+4. Interact with the application on the simulator or connected device to test the functionality and user experience.
 
 ### Troubleshooting
 - If you encounter any build or runtime errors, ensure that you have followed the installation steps correctly and that your development environment meets the required dependencies.
