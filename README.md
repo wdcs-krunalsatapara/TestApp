@@ -3,6 +3,7 @@ React Native Application Development with Figma Reference
 
 Installation
 1. Clone the repository from GitHub:
+
 git clone https://github.com/wdcs-krunalsatapara/TestApp/tree/master
 
 Install project dependencies using npm or yarn:
