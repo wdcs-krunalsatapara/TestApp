@@ -1,6 +1,6 @@
 import {Strings} from './strings';
 
-interface ListArrayType {
+interface MockStokesType {
   id: number;
   itemType: string;
   itemTitleName: string;
@@ -8,10 +8,10 @@ interface ListArrayType {
   itemTotalAmount: number;
   itemTotalProfitLossAmount: number;
   itemTotalProfitLossPercent: number;
-  subItemsArray: Array<SubItemType>;
+  subItemsArray: Array<SubMockStokesType>;
 }
 
-interface SubItemType {
+interface SubMockStokesType {
   id: number;
   subItemsTitleName: string;
   subItemsQty: number;
@@ -20,7 +20,7 @@ interface SubItemType {
   subItemProfitLossAmount: number;
 }
 
-export const ListArrayData: ListArrayType[] = [
+export const MockStokesData: MockStokesType[] = [
   {
     id: 1,
     itemType: 'live',
@@ -281,13 +281,15 @@ export const ListArrayData: ListArrayType[] = [
   },
 ];
 
-export const GenerateRandomNumber = () => {
+// its generate random number between -10000 to 10000
+export const generateRandomNumber = () => {
   var plusOrMinus =
     Math.ceil(Math.random() * 10000) * (Math.round(Math.random()) ? 1 : -1);
   return plusOrMinus;
 };
 
-export const numDifferentiation = value => {
+// It take number as a argument and returns formatted amount
+export const formatAmount = (value: number) => {
   const val = Math.abs(value);
   if (val >= 10000000) return `${(value / 10000000).toFixed(2)} Cr`;
   if (val >= 100000) return `${(value / 100000).toFixed(2)} L`;

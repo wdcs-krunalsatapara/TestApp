@@ -1,11 +1,13 @@
 import React, {memo, useCallback, useContext, useEffect, useRef} from 'react';
 import {FlatList} from 'react-native';
 import SubRawItem from './SubRawItem';
-import {GenerateRandomNumber} from '../constants/mockData';
+import {generateRandomNumber} from '../constants/mockData';
 import {AppContext} from '../constants/Context';
 
-const SubListComponent = ({currentIndex}) => {
-  const {arrayData, setArrayData} = useContext(AppContext);
+const SubListComponent = (props: any) => {
+  const {currentIndex} = props;
+
+  const {stokesData, setStokesData} = useContext(AppContext);
   const intervalIdRef = useRef(null);
 
   useEffect(() => {
@@ -13,42 +15,43 @@ const SubListComponent = ({currentIndex}) => {
     return stopUpdatingSubItems;
   }, []);
 
+  // its generate random number for subItemProfitLossAmount and update in subItemsArray
   const startUpdatingSubItems = useCallback(() => {
     intervalIdRef.current = setInterval(() => {
-      setArrayData(prevArrayData => {
-        const newArrayData = [...prevArrayData];
-        const currentSubItems = newArrayData[currentIndex].subItemsArray;
-        const updatedSubItems = currentSubItems.map(subItem => ({
+      setStokesData((prevstokesData: any) => {
+        const newstokesData = [...prevstokesData];
+        const currentSubItems = newstokesData[currentIndex].subItemsArray;
+        const updatedSubItems = currentSubItems.map((subItem: any) => ({
           ...subItem,
-          subItemProfitLossAmount: GenerateRandomNumber(),
+          subItemProfitLossAmount: generateRandomNumber(),
         }));
 
-        newArrayData[currentIndex] = {
-          ...newArrayData[currentIndex],
+        newstokesData[currentIndex] = {
+          ...newstokesData[currentIndex],
           subItemsArray: updatedSubItems,
         };
 
-        return newArrayData;
+        return newstokesData;
       });
     }, 500);
-  }, [currentIndex, setArrayData]);
+  }, [currentIndex, setStokesData]);
 
-  const stopUpdatingSubItems = useCallback(() => {
-    clearInterval(intervalIdRef.current);
-  }, []);
+  const stopUpdatingSubItems = useCallback(
+    () => clearInterval(intervalIdRef.current),
+    [],
+  );
 
-  const renderItem = ({item, index}) => {
-    return (
-      <SubRawItem
-        index={index}
-        item={arrayData[currentIndex].subItemsArray[index]}
-      />
-    );
-  };
+  // its render for sub stokes name, qty, ltp, val, pnl
+  const renderItem = ({index}) => (
+    <SubRawItem
+      index={index}
+      item={stokesData[currentIndex].subItemsArray[index]}
+    />
+  );
 
   return (
     <FlatList
-      data={arrayData[currentIndex].subItemsArray}
+      data={stokesData[currentIndex].subItemsArray}
       renderItem={renderItem}
       keyExtractor={item => item.id.toString()}
       scrollEnabled={false}

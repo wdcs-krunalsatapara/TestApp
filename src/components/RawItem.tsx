@@ -6,13 +6,14 @@ import SubListComponent from './SubListComponent';
 import {AppContext} from '../constants/Context';
 
 const RawItem = ({index, toggle, handleCollapseExpand}) => {
-  const {arrayData, setArrayData} = useContext(AppContext);
+  const {stokesData, setStokesData} = useContext(AppContext);
 
-  const selectedItem = arrayData[index];
+  const selectedItem = stokesData[index];
 
+  // its function for update raw wise total profit loss amount with percentage
   const updateTotalProfitLossAmount = useCallback(() => {
     const sum = selectedItem.subItemsArray.reduce(
-      (accumulator, currentValue) =>
+      (accumulator: any, currentValue: {subItemProfitLossAmount: any}) =>
         accumulator + currentValue.subItemProfitLossAmount,
       0,
     );
@@ -22,8 +23,8 @@ const RawItem = ({index, toggle, handleCollapseExpand}) => {
     selectedItem.itemTotalProfitLossAmount = sum;
     selectedItem.itemTotalProfitLossPercent = parseFloat(percent.toFixed(2));
 
-    setArrayData(prevArrayData => [...prevArrayData]);
-  }, [selectedItem, setArrayData]);
+    setStokesData((prevstokesData: any) => [...prevstokesData]);
+  }, [selectedItem, setStokesData]);
 
   useEffect(() => {
     updateTotalProfitLossAmount();
@@ -38,19 +39,19 @@ const RawItem = ({index, toggle, handleCollapseExpand}) => {
       activeOpacity={0.8}
       style={styles.itemContainer}
       onPress={handlePress}>
-      <Text style={styles.txtItemTitle}>{arrayData[index].itemTitleName}</Text>
+      <Text style={styles.txtItemTitle}>{stokesData[index].itemTitleName}</Text>
       <View style={styles.itemRawMiddleContainer}>
         <Text
           style={[
             styles.txtItemSubTitle,
             {
               color:
-                arrayData[index].itemType === 'live'
+                stokesData[index].itemType === 'live'
                   ? Colors.oslo_Grey
                   : Colors.saffron_Mango,
             },
           ]}>
-          {arrayData[index].itemSubTitleName}
+          {stokesData[index].itemSubTitleName}
         </Text>
         <Text style={styles.txtItemProfitLoss}>
           {'$ '}
@@ -59,12 +60,12 @@ const RawItem = ({index, toggle, handleCollapseExpand}) => {
               styles.txtItemProfitLoss,
               {
                 color:
-                  arrayData[index].itemTotalProfitLossAmount > 0
+                  stokesData[index].itemTotalProfitLossAmount > 0
                     ? Colors.light__Green
                     : Colors.reddish,
               },
             ]}>
-            {`${arrayData[index].itemTotalProfitLossAmount} (${arrayData[index].itemTotalProfitLossPercent} %)`}
+            {`${stokesData[index].itemTotalProfitLossAmount} (${stokesData[index].itemTotalProfitLossPercent} %)`}
           </Text>
         </Text>
       </View>

@@ -2,13 +2,13 @@ import React, {useState} from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import Dashboard from './src/screens/SCR_DASHBOARD';
 import {AppContext} from './src/constants/Context';
-import {ListArrayData} from './src/constants/mockData';
+import {MockStokesData} from './src/constants/mockData';
 
 const App = () => {
-  const [arrayData, setArrayData] = useState(ListArrayData);
+  const [stokesData, setStokesData] = useState(MockStokesData);
   return (
     <SafeAreaView style={styles.safeAreaViewContainer}>
-      <AppContext.Provider value={{arrayData, setArrayData}}>
+      <AppContext.Provider value={{stokesData, setStokesData}}>
         <Dashboard />
       </AppContext.Provider>
     </SafeAreaView>

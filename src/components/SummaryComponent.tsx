@@ -5,10 +5,10 @@ import {icons} from '../../assets/images';
 import {Colors, Fonts} from '../theme';
 import fonts from '../theme/fonts';
 import {AppContext} from '../constants/Context';
-import {numDifferentiation} from '../constants/mockData';
+import {formatAmount} from '../constants/mockData';
 
 const SummaryComponents = () => {
-  const {arrayData} = useContext(AppContext);
+  const {stokesData} = useContext(AppContext);
 
   const [totalCapitalAmount, setTotalCapitalAmount] = useState(0);
   const [totalProfitLossObj, setTotalProfitLossObj] = useState({
@@ -16,26 +16,20 @@ const SummaryComponents = () => {
     profitLossPercent: 0,
   });
 
+  // it will calculate capital amount
   const updateTotalCapitalAmount = useCallback(() => {
-    // let sum = 0;
-    // for (let i = 0; i < arrayData.length; i++) {
-    //   sum += arrayData[i].itemTotalAmount;
-    // }
-    const sum = arrayData.reduce(
+    const sum = stokesData.reduce(
       (accumulator, currentValue) => accumulator + currentValue.itemTotalAmount,
       0,
     );
 
     setTotalCapitalAmount(sum);
-  }, [arrayData]);
+  }, [stokesData]);
 
+  // it will calculate total p&l and percentage
   const updateTotalProfitLossAmount = useCallback(() => {
-    // let sum = 0;
-    // for (let i = 0; i < arrayData.length; i++) {
-    //   sum += arrayData[i].itemTotalProfitLossAmount;
-    // }
-    const sum = arrayData.reduce(
-      (accumulator, currentValue) =>
+    const sum = stokesData.reduce(
+      (accumulator: number, currentValue: any) =>
         accumulator + currentValue.itemTotalProfitLossAmount,
       0,
     );
@@ -43,10 +37,10 @@ const SummaryComponents = () => {
     const percent = (sum * 100) / totalCapitalAmount;
 
     setTotalProfitLossObj({
-      totalProfitLoss: numDifferentiation(sum),
+      totalProfitLoss: formatAmount(sum),
       profitLossPercent: percent ? parseFloat(percent.toFixed(2)) : 0,
     });
-  }, [arrayData]);
+  }, [stokesData, totalCapitalAmount]);
 
   useEffect(() => {
     updateTotalProfitLossAmount();
@@ -67,7 +61,7 @@ const SummaryComponents = () => {
         <View style={styles.bottomLeftRightContainer}>
           <Text style={styles.txtSubTitle}>{Strings.str_capital}</Text>
           <Text style={styles.txtSubTitleValue}>
-            {'$ ' + numDifferentiation(totalCapitalAmount)}
+            {'$ ' + formatAmount(totalCapitalAmount)}
           </Text>
         </View>
         <View style={styles.bottomMiddleContainer}>

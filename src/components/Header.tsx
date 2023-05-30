@@ -10,7 +10,7 @@ const Header = () => {
     <View style={styles.headerContainer}>
       <Image source={icons.ic_menu} style={styles.headerMenu} />
       <Text style={styles.headerTitle}>{Strings.str_header_title}</Text>
-      <Image source={icons.ic_menu} style={[styles.headerMenu, {opacity: 0}]} />
+      <Image source={icons.ic_menu} style={styles.headerImageMenu} />
     </View>
   );
 };
@@ -33,6 +33,12 @@ const styles = StyleSheet.create({
     height: 24,
     width: 24,
     marginHorizontal: 16,
+  },
+  headerImageMenu: {
+    height: 24,
+    width: 24,
+    marginHorizontal: 16,
+    opacity: 0,
   },
 });
 

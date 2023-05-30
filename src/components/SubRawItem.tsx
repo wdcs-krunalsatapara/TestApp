@@ -1,9 +1,8 @@
-import React, {memo, useContext} from 'react';
+import React, {memo} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {Colors, Fonts} from '../theme';
-import {AppContext} from '../constants/Context';
 
-const SubRawItem = props => {
+const SubRawItem = (props: any) => {
   const {item} = props;
 
   return (
